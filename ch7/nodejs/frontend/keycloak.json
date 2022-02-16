@@ -3,6 +3,6 @@
   "auth-server-url": "${env.KC_URL:http://localhost:8180/auth}",
   "resource": "mywebapp",
   "credentials" : {
-      "secret" : CLIENT_SECRET
+      "secret" : "3338a274-bcd8-42d4-9796-2db7b4f7d2b8"
   }
 }
