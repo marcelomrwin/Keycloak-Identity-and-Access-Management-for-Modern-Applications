@@ -1,6 +1,6 @@
 {
   "realm": "myrealm",
   "bearer-only": true,
-  "auth-server-url": "${env.KC_URL:http://localhost:8180/auth}",
+  "serverUrl": "${env.KC_URL:http://localhost:8080}",
   "resource": "service-nodejs"
 }

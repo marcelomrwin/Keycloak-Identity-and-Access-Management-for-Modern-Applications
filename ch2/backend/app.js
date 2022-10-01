@@ -7,7 +7,7 @@ var app = express();
 
 app.use(cors());
 
-var memoryStore = new session.MemoryStore();
+const memoryStore = new session.MemoryStore();
 
 app.use(session({
   secret: 'some secret',
@@ -16,7 +16,7 @@ app.use(session({
   store: memoryStore
 }));
 
-var keycloak = new Keycloak({ store: memoryStore });
+const keycloak = new Keycloak({ store: memoryStore });
 
 app.use(keycloak.middleware());
 
