@@ -1,0 +1,6 @@
+{
+  "realm": "keycloak",  
+  "serverUrl": "${env.KC_URL:http://localhost:8280/auth}",
+  "resource": "oauth-backend",
+  "verify-token-audience": false
+}

@@ -83,6 +83,7 @@ function loadTokens(code) {
 function invokeService() {
     var req = new XMLHttpRequest();
     req.onreadystatechange = function() {
+        console.debug(JSON.stringify(req));
         if (req.readyState === 4) {
             if (req.status === 0) {
                 setOutput('output-serviceResponse', "Failed to send request");

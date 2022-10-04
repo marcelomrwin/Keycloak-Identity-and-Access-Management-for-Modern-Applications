@@ -1,11 +1,14 @@
 var express = require('express');
 var session = require('express-session');
-var Keycloak = require('keycloak-connect');
+//var Keycloak = require('keycloak-connect');
 var cors = require('cors');
 
 var app = express();
+//app.options('*',cors())
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 var memoryStore = new session.MemoryStore();
 
@@ -16,11 +19,15 @@ app.use(session({
   store: memoryStore
 }));
 
-var keycloak = new Keycloak({ store: memoryStore });
+//var keycloak = new Keycloak({ store: memoryStore });
 
+const keycloak = require('./config/keycloak-config.js').initKeycloak();
 app.use(keycloak.middleware());
 
-app.get('/secured', keycloak.protect('realm:myrole'), function (req, res) {
+var testController = require('./controller/test-controller.js');
+app.use('/test', testController);
+
+app.get('/secured', keycloak.protect('realm:offline_access'), function (req, res) {
   res.setHeader('content-type', 'text/plain');
   res.send('Secret message!');
 });
