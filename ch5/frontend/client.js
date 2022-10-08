@@ -66,6 +66,7 @@ function loadTokens(code) {
                 document.getElementById('output-accessTokenEncoded').innerHTML = response['access_token'];
                 setState('refreshToken', response['refresh_token']);
                 setState('accessToken', response['access_token']);
+                console.warn(response['access_token']);
             } else {
                 setOutput('output-accessToken', '');
             }
