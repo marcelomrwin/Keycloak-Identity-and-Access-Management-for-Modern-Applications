@@ -5,7 +5,7 @@ import static org.keycloak.provider.ProviderConfigProperty.STRING_TYPE;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.http.auth.AUTH;
+
 import org.keycloak.Config;
 import org.keycloak.authentication.Authenticator;
 import org.keycloak.authentication.AuthenticatorFactory;

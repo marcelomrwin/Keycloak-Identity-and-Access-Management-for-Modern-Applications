@@ -1,6 +1,7 @@
 package com.example.springboot;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,9 +17,11 @@ public class Application {
 
 		String[] beanNames = ctx.getBeanDefinitionNames();
 		Arrays.sort(beanNames);
-		for (String beanName : beanNames) {
-			System.out.println(beanName);
-		}
+
+		Stream.of(beanNames).forEach(b -> {
+			System.out.println(b);
+		});
+
 	}
-	
+
 }

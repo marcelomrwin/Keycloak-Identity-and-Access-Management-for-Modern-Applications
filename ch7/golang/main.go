@@ -1,6 +1,6 @@
 /*
- This is an example about how to use a public client written in Golang to authenticate using Keycloak.
- This example is only for demonstration purposes and lacks important
+This is an example about how to use a public client written in Golang to authenticate using Keycloak.
+This example is only for demonstration purposes and lacks important
 */
 package main
 
@@ -29,9 +29,9 @@ func init() {
 	idTokenVerifier = *oidcProvider.Verifier(&oidcConfig)
 }
 
-//first step
+// first step
 func createOidcProvider(ctx context.Context) *oidc.Provider {
-	provider, err := oidc.NewProvider(ctx, "http://localhost:8180/auth/realms/myrealm")
+	provider, err := oidc.NewProvider(ctx, "https://mykeycloak.masales.lab:8543/realms/myrealm")
 
 	if err != nil {
 		log.Fatal("Failed to fetch discovery document: ", err)
@@ -40,7 +40,7 @@ func createOidcProvider(ctx context.Context) *oidc.Provider {
 	return provider
 }
 
-//second step
+// second step
 func createConfig(provider oidc.Provider) (oidc.Config, oauth2.Config) {
 	oidcConfig := &oidc.Config{
 		ClientID: "mywebapp",
@@ -48,7 +48,7 @@ func createConfig(provider oidc.Provider) (oidc.Config, oauth2.Config) {
 
 	config := oauth2.Config{
 		ClientID:     oidcConfig.ClientID,
-		ClientSecret: "3338a274-bcd8-42d4-9796-2db7b4f7d2b8",
+		ClientSecret: "skgxkWg74QKSwbpCrTEz5Hh8SWMVaT9T",
 		Endpoint:     provider.Endpoint(),
 		RedirectURL:  "http://localhost:8080/auth/callback",
 		Scopes:       []string{oidc.ScopeOpenID, "profile", "email"},

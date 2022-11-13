@@ -1,8 +1,8 @@
 {
   "realm": "myrealm",
-  "auth-server-url": "${env.KC_URL:http://localhost:8180/auth}",
+  "auth-server-url": "${env.KC_URL:https://mykeycloak.masales.lab:8543}",
   "resource": "mywebapp",
   "credentials" : {
-      "secret" : "3338a274-bcd8-42d4-9796-2db7b4f7d2b8"
+      "secret" : "skgxkWg74QKSwbpCrTEz5Hh8SWMVaT9T"
   }
 }

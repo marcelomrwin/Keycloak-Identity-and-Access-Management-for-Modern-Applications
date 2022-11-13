@@ -2,12 +2,15 @@ var express = require('express');
 var open = require('open');
 var axios = require('axios');
 var querystring = require('querystring');
+var sslRootCAs = require('ssl-root-cas/latest');
 
 var app = express();
 app.use(express.static('callback'));
 
 var server = app.listen(0);
 var port = server.address().port;
+
+sslRootCAs.inject().addFile(__dirname+'/certs/Masales-RootCA.crt');
 
 console.info('Listening on port: ' + port + '\n');
 
@@ -18,7 +21,7 @@ app.get('/callback/', function(req, res) {
 
     console.info('Authorization Code: ' + code + '\n');
 
-    axios.post('http://localhost:8180/auth/realms/myrealm/protocol/openid-connect/token', querystring.stringify({
+    axios.post('https://mykeycloak.masales.lab:8543/realms/myrealm/protocol/openid-connect/token', querystring.stringify({
         client_id: 'cli',
         grant_type: 'authorization_code',
         redirect_uri: 'http://localhost:' + port + '/callback',
@@ -30,4 +33,4 @@ app.get('/callback/', function(req, res) {
     });
 });
 
-open('http://localhost:8180/auth/realms/myrealm/protocol/openid-connect/auth?client_id=cli&redirect_uri=http://localhost:' + port + '/callback&response_type=code');
+open('https://mykeycloak.masales.lab:8543/realms/myrealm/protocol/openid-connect/auth?client_id=cli&redirect_uri=http://localhost:' + port + '/callback&response_type=code');

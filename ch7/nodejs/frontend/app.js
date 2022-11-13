@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var Keycloak = require('keycloak-connect');
+var sslRootCAs = require('ssl-root-cas');
 var cors = require('cors');
 
 var app = express();
@@ -16,11 +17,13 @@ app.use(session({
     store: memoryStore
 }));
 
+sslRootCAs.inject().addFile(__dirname+'/certs/Masales-RootCA.crt');
+
 var keycloak = new Keycloak({ store: memoryStore });
 
 app.use(keycloak.middleware());
 
-app.get('/', keycloak.protect(), function (req, res) {
+app.get('/', keycloak.checkSso(), function (req, res) {
     res.setHeader('content-type', 'text/plain');
     res.send('Welcome!');
 });
